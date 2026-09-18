@@ -1,81 +1,612 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap');
+
 * {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f7f3ed;
-    color: #2b2118;
+:root {
+    --bg: #f5f1eb;
+    --card: rgba(255, 255, 255, 0.88);
+    --dark: #241a14;
+    --brown: #6f4e37;
+    --gold: #c49a5a;
+    --gold-light: #e4c58b;
+    --text: #30241d;
+    --muted: #8a7c70;
+    --border: rgba(111, 78, 55, 0.12);
+    --shadow: 0 15px 40px rgba(44, 31, 22, 0.08);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(196, 154, 90, 0.10), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(111, 78, 55, 0.08), transparent 30%),
+        var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* =========================
+   HEADER
+========================= */
+
 header {
+    position: relative;
+    overflow: hidden;
     text-align: center;
-    padding: 40px 20px;
-    background: #2b2118;
+    padding: 75px 20px 85px;
+
+    background:
+        linear-gradient(
+            rgba(30, 20, 14, 0.88),
+            rgba(30, 20, 14, 0.94)
+        ),
+        url("images/cafe-bg.jpg") center / cover;
+
     color: white;
 }
 
+header::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border: 1px solid rgba(228, 197, 139, 0.25);
+    border-radius: 50%;
+    top: -150px;
+    left: -100px;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(228, 197, 139, 0.18);
+    border-radius: 50%;
+    bottom: -230px;
+    right: -120px;
+}
+
 header h1 {
-    margin: 0 0 10px;
-    font-size: 32px;
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    color: #fff;
+}
+
+header h1::after {
+    content: "";
+    display: block;
+
+    width: 55px;
+    height: 3px;
+
+    margin: 18px auto;
+
+    background: linear-gradient(
+        90deg,
+        var(--gold),
+        var(--gold-light)
+    );
+
+    border-radius: 10px;
 }
 
 header p {
-    margin: 0;
+    position: relative;
+    z-index: 2;
+
+    margin: 0 auto;
+
+    max-width: 520px;
+
+    color: #d9cec3;
+    font-size: 15px;
+    letter-spacing: 1px;
 }
+
+/* =========================
+   MAIN
+========================= */
 
 main {
-    max-width: 700px;
-    margin: auto;
-    padding: 25px 15px;
+    width: min(900px, calc(100% - 30px));
+    margin: -35px auto 0;
+
+    position: relative;
+    z-index: 5;
+
+    padding: 35px 25px;
+
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 28px;
+
+    box-shadow: 0 25px 70px rgba(43, 33, 24, 0.10);
 }
 
+/* =========================
+   SECTION
+========================= */
+
 section {
-    margin-bottom: 35px;
+    margin-bottom: 45px;
+}
+
+section:last-child {
+    margin-bottom: 0;
 }
 
 h2 {
-    border-bottom: 2px solid #d8c3a5;
-    padding-bottom: 10px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin: 0 0 20px;
+
+    padding: 0 0 12px;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    color: var(--dark);
+
+    border-bottom: 1px solid var(--border);
 }
 
+h2::before {
+    content: "";
+    width: 6px;
+    height: 28px;
+
+    display: inline-block;
+
+    background: linear-gradient(
+        var(--gold),
+        var(--gold-light)
+    );
+
+    border-radius: 20px;
+}
+
+/* =========================
+   MENU ITEM
+========================= */
+
 .menu-item {
+    position: relative;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 20px;
 
-    background: white;
-    padding: 18px;
-    margin: 12px 0;
+    gap: 18px;
 
-    border-radius: 12px;
+    min-height: 120px;
+
+    margin: 14px 0;
+    padding: 14px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    box-shadow: 0 5px 20px rgba(43, 33, 24, 0.035);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+
+    overflow: hidden;
+}
+
+/* خط طلایی کنار کارت */
+
+.menu-item::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 18px;
+    bottom: 18px;
+
+    width: 3px;
+
+    background: linear-gradient(
+        var(--gold),
+        var(--gold-light)
+    );
+
+    border-radius: 0 10px 10px 0;
+
+    transform: scaleY(0);
+
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(196, 154, 90, 0.35);
+
+    box-shadow:
+        0 18px 40px rgba(43, 33, 24, 0.11);
+}
+
+.menu-item:hover::before {
+    transform: scaleY(1);
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.menu-item img {
+    width: 105px;
+    height: 105px;
+
+    object-fit: cover;
+
+    flex-shrink: 0;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 20px rgba(43, 33, 24, 0.15);
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+.menu-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.05);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.menu-item > div:first-of-type {
+    flex: 1;
+    min-width: 0;
 }
 
 .menu-item h3 {
-    margin: 0 0 8px;
+    margin: 0 0 5px;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 21px;
+    font-weight: 600;
+
+    color: var(--dark);
 }
 
 .menu-item p {
     margin: 0;
-    color: #777;
-    font-size: 14px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.7;
 }
 
+/* =========================
+   PRICE
+========================= */
+
 .menu-item strong {
+    flex-shrink: 0;
+
+    padding: 8px 12px;
+
+    font-size: 16px;
+
+    color: var(--brown);
+
+    background: rgba(196, 154, 90, 0.12);
+
+    border-radius: 10px;
+
     white-space: nowrap;
 }
 
+/* =========================
+   SPECIAL ITEM
+========================= */
+
+.menu-item.special {
+    border-color: rgba(196, 154, 90, 0.35);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.95),
+            rgba(250,241,226,0.9)
+        );
+}
+
+.menu-item.special::after {
+    content: "SPECIAL";
+
+    position: absolute;
+
+    top: 10px;
+    right: -32px;
+
+    padding: 4px 35px;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    color: white;
+
+    background: var(--gold);
+
+    transform: rotate(45deg);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
     text-align: center;
-    padding: 30px;
-    color: #777;
+
+    margin-top: 50px;
+
+    padding: 35px 20px;
+
+    color: var(--muted);
+
+    font-size: 13px;
 }
+
+footer::before {
+    content: "✦";
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: var(--gold);
+
+    font-size: 18px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 55px 18px 70px;
+    }
+
+    header h1 {
+        font-size: 44px;
+    }
+
+    main {
+        width: calc(100% - 20px);
+
+        margin-top: -25px;
+
+        padding: 25px 14px;
+
+        border-radius: 22px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .menu-item {
+        gap: 13px;
+        padding: 11px;
+
+        border-radius: 17px;
+    }
+
+    .menu-item img {
+        width: 82px;
+        height: 82px;
+
+        border-radius: 13px;
+    }
+
+    .menu-item h3 {
+        font-size: 17px;
+    }
+
+    .menu-item p {
+        font-size: 11px;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+    }
+
+    .menu-item strong {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 400px) {
+
+    .menu-item {
+        align-items: flex-start;
+    }
+
+    .menu-item img {
+        width: 72px;
+        height: 72px;
+    }
+
+    .menu-item strong {
+        font-size: 12px;
+        padding: 5px 7px;
+    }
+
+    .menu-item h3 {
+        font-size: 16px;
+    }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+/* =========================
+   IMAGE LIGHTBOX
+========================= */
+
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(20, 14, 10, 0.88);
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.3s ease,
+                visibility 0.3s ease;
+}
+
+.image-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-lightbox img {
+    max-width: min(900px, 95vw);
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.5);
+
+    transform: scale(0.8);
+
+    transition: transform 0.35s ease;
+}
+
+.image-lightbox.active img {
+    transform: scale(1);
+}
+
+/* دکمه بستن */
+
+.lightbox-close {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: rotate(90deg);
+}
+
+/* نشان بده عکس قابل کلیکه */
+
 .menu-item img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 12px;
-    flex-shrink: 0;
+    cursor: zoom-in;
+}
+
+/* موبایل */
+
+@media (max-width: 600px) {
+
+    .image-lightbox {
+        padding: 15px;
+    }
+
+    .image-lightbox img {
+        max-width: 96vw;
+        max-height: 80vh;
+        border-radius: 14px;
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 15px;
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 24px;
+    }
 }
